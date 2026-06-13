@@ -1,32 +1,17 @@
 import Link from "next/link";
+import { PawPrint } from "lucide-react";
+
+const links = ["Home", "Services", "About", "Reviews", "Gallery", "Contact"];
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur">
-      <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-
-        <Link
-          href="/"
-          className="text-2xl font-bold"
-        >
-          Jeroen & Paws
-        </Link>
-
-        <nav className="hidden md:flex gap-8">
-          <Link href="/">Home</Link>
-          <Link href="/services">Services</Link>
-          <Link href="/about">About</Link>
-          <Link href="/reviews">Reviews</Link>
-          <Link href="/gallery">Gallery</Link>
-          <Link href="/contact">Contact</Link>
+    <header className="sticky top-0 z-50 mx-auto max-w-[1560px] rounded-t-[28px] bg-[#fffaf4]/92 shadow-sm backdrop-blur">
+      <div className="flex items-center justify-between gap-5 px-8 py-6 sm:px-12">
+        <Link href="/" className="font-serif text-2xl font-black leading-none tracking-tight text-[var(--primary)]">JEROEN<br />& PAWS <PawPrint className="inline" size={16} /></Link>
+        <nav className="hidden items-center gap-8 text-sm font-semibold lg:flex">
+          {links.map((link) => <a className="nav-link" href={`#${link.toLowerCase()}`} key={link}>{link}</a>)}
         </nav>
-
-        <Link
-          href="/contact"
-          className="bg-[var(--primary)] text-white px-5 py-3 rounded-full"
-        >
-          Book a Meet & Greet
-        </Link>
+        <a href="#contact" className="button-primary text-sm">Book a Meet & Greet <PawPrint size={16} /></a>
       </div>
     </header>
   );
