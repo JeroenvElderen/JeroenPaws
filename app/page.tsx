@@ -1,264 +1,155 @@
 /* eslint-disable @next/next/no-img-element */
-import {
-  Award,
-  Bed,
-  BriefcaseMedical,
-  GraduationCap,
-  Heart,
-  Home as HomeIcon,
-  Mail,
-  MapPin,
-  PawPrint,
-  Phone,
-  Shield,
-  Star,
-} from "lucide-react";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import { Camera, Heart, Mail, PawPrint } from "lucide-react";
+import Link from "next/link";
 
 const photos = {
-  hero: "https://images.unsplash.com/photo-1541599468348-e96984315921?auto=format&fit=crop&w=1600&q=90",
-  jeroen: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&w=1200&q=90",
-  golden: "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=90",
-  collie: "https://images.unsplash.com/photo-1534361960057-19889db9621e?auto=format&fit=crop&w=800&q=90",
-  puppy: "https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&w=800&q=90",
-  training: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=90",
-  blackDog: "https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&w=800&q=90",
-  beach: "https://images.unsplash.com/photo-1598133894008-61f7fdb8cc3a?auto=format&fit=crop&w=900&q=90",
-  lab: "https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=800&q=90",
+  hero: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=2200&q=90",
+  about: "https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?auto=format&fit=crop&w=1200&q=90",
+  adventure: "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=900&q=90",
+  forest: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=900&q=90",
+  portrait: "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=900&q=90",
+  story: "https://images.unsplash.com/photo-1523480717984-24cba35ae1ef?auto=format&fit=crop&w=900&q=90",
+  testimonial: "https://images.unsplash.com/photo-1551717743-49959800b1f6?auto=format&fit=crop&w=1800&q=90",
+  cta: "https://images.unsplash.com/photo-1525253086316-d0c936c814f8?auto=format&fit=crop&w=900&q=90",
 };
 
-const services = [
-  { icon: PawPrint, title: "Dog Walking", text: "Fun, structured walks tailored to your dog's energy level and personality.", image: photos.golden },
-  { icon: HomeIcon, title: "Home Visits", text: "Feeding, company and toilet breaks while you're away. Reliable and stress-free.", image: photos.collie },
-  { icon: Bed, title: "Boarding", text: "A safe, comfortable home environment with plenty of care, attention and cuddles.", image: photos.puppy },
-  { icon: GraduationCap, title: "Training", text: "Positive, reward-based training to build a better bond and confidence with your dog.", image: photos.training },
+const navLinks = ["Home", "About", "Portfolio", "Experience", "Contact"];
+
+const portfolio = [
+  ["Adventures", photos.adventure],
+  ["Connection", photos.forest],
+  ["Portraits", photos.portrait],
+  ["Stories", photos.story],
 ];
 
-const trustItems = [
-  { icon: PawPrint, value: "1,500+", label: "Adventures Shared" },
-  { icon: Star, value: "5-Star", label: "Loved By Dogs & Humans" },
-  { icon: Shield, value: "Fully Insured", label: "For peace of mind" },
-  { icon: MapPin, value: "Local & Trusted", label: "Bray based" },
-];
-
-const gallery = [
-  photos.collie,
-  photos.golden,
-  photos.hero,
-  photos.lab,
-  photos.blackDog,
-  photos.beach,
-  photos.jeroen,
-  photos.training,
-];
-
-const reviews = [
-  { quote: "Jeroen is amazing with our Labrador. He's reliable, professional and clearly loves what he does.", name: "Sarah O.", place: "Bray" },
-  { quote: "Our dog gets so excited when Jeroen arrives. The updates and photos are a lovely touch.", name: "Mark D.", place: "South Dublin" },
-  { quote: "Peace of mind knowing our dog is in such good hands. Highly recommend!", name: "Aoife K.", place: "Wicklow" },
+const steps = [
+  { icon: PawPrint, number: "01", title: "Connect", text: "We get to know you and your dog. We plan the perfect session for you both." },
+  { icon: Camera, number: "02", title: "Session", text: "A relaxed outdoor session where your dog can be themselves. No pressure, just fun." },
+  { icon: Heart, number: "03", title: "Memories", text: "Beautiful, timeless images you’ll cherish for a lifetime." },
 ];
 
 export default function Home() {
   return (
-    <div className="landing-shell">
-      <Navbar />
-      <main>
-        <Hero />
-        <HomeAbout />
-        <Services />
-        <About />
-        <Reviews />
-        <Gallery />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <main className="home-page">
+      <Hero />
+      <About />
+      <Portfolio />
+      <Experience />
+      <Testimonial />
+      <FinalCta />
+    </main>
   );
 }
 
 function Hero() {
   return (
-    <section className="panel hero-panel" id="home">
-      <div className="hero-copy">
-        <p className="eyebrow">Professional Dog Walking & Pet Care</p>
-        <h1>
-          The best part
-          <span className="script block">of their day.</span>
-        </h1>
-        <p>Reliable walks, home visits, boarding and training in Bray, Wicklow & South Dublin.</p>
-        <div className="hero-actions">
-          <a className="button-primary" href="#contact">Book a Meet & Greet <PawPrint size={17} /></a>
-          <a className="button-secondary" href="#contact">Let&apos;s Chat <Heart size={17} /></a>
-        </div>
-      </div>
-      <div className="hero-photo" />
-      <p className="scribble hero-note">More tails.<br />More adventures. ♡</p>
-      <div className="trust-bar">
-        {trustItems.map(({ icon: Icon, value, label }) => (
-          <div className="trust-item" key={value}>
-            <Icon size={33} />
-            <span><b>{value}</b><small>{label}</small></span>
-          </div>
-        ))}
+    <section className="home-hero" id="home">
+      <div className="hero-shade" />
+      <Header />
+      <div className="hero-content">
+        <h1>Dog photography<br />for people who see<br />their dogs as <span>family.</span></h1>
+        <p>Natural, emotional photography<br />across Ireland and the Netherlands.</p>
+        <Link className="purple-button" href="#contact">Book your session <PawPrint size={15} /></Link>
       </div>
     </section>
   );
 }
 
-function HomeAbout() {
+function Header() {
   return (
-    <section className="panel home-about-card">
-      <img className="photo" src={photos.jeroen} alt="Jeroen kneeling beside a happy dog" />
-      <div>
-        <p className="eyebrow">About Jeroen</p>
-        <h2>Hi, I’m Jeroen <span className="purple">♣</span></h2>
-        <p>At Jeroen & Paws, every dog is treated as an individual. Whether it&apos;s a relaxed stroll, an energetic adventure or a quiet home visit, my focus is always the same:</p>
-        <p><b>Providing calm, reliable and professional care</b> that fits your dog&apos;s needs.</p>
-        <a className="button-primary compact" href="#about">More About Me</a>
-      </div>
-      <span className="doodle doodle-one">⌒⌒</span>
-    </section>
-  );
-}
-
-function Services() {
-  return (
-    <section className="panel section-panel" id="services">
-      <SectionIntro eyebrow="Services" title="How I Can Help" />
-      <div className="services-grid">
-        {services.map(({ icon: Icon, title, text, image }) => (
-          <article className="service-card" key={title}>
-            <div>
-              <span className="icon-bubble"><Icon size={34} /></span>
-              <h3>{title}</h3>
-              <p>{text}</p>
-              <a href="#contact">Learn More →</a>
-            </div>
-            <img src={image} alt={title} />
-          </article>
+    <header className="home-header">
+      <Link href="#home" className="home-logo">Jeroen<br />And Paws</Link>
+      <nav>
+        {navLinks.map((link) => (
+          <Link className={link === "Home" ? "active" : ""} href={`#${link.toLowerCase()}`} key={link}>{link}</Link>
         ))}
-      </div>
-      <div className="cta-strip">
-        <div>
-          <h3>Not sure which service is right for your dog?</h3>
-          <p>Let&apos;s have a chat and find the perfect fit.</p>
-        </div>
-        <a className="button-light" href="#contact">Book a Meet & Greet <PawPrint size={17} /></a>
-      </div>
-    </section>
+      </nav>
+      <Link className="nav-book" href="#contact">Book a session</Link>
+    </header>
   );
 }
 
 function About() {
   return (
-    <section className="panel about-panel" id="about">
+    <section className="about-home" id="about">
+      <img src={photos.about} alt="Photographer with a dog in the mountains" />
       <div className="about-copy">
-        <p className="eyebrow">About Me</p>
-        <h2>Hi, I’m Jeroen <span className="purple">♣</span></h2>
-        <p>Dogs have been part of my life for as long as I can remember.</p>
-        <p>Over the years I’ve gained experience in walking, training and caring for dogs of all shapes, sizes and personalities.</p>
-        <p>My approach is simple:<br /><b>Calm, consistent and tailored to each dog&apos;s individual needs.</b></p>
-        <p className="scribble quote-note">“Happy dogs. Happy humans.<br />That’s what it’s all about.” ♡</p>
+        <p className="eyebrow">About me</p>
+        <h2>Every dog has a story<br />worth <span>remembering.</span></h2>
+        <p>I’m Jeroen, a dog photographer with a passion for capturing real moments and the unique bond between dogs and their humans. My sessions are relaxed, natural and focused on what matters most — connection.</p>
+        <Link className="purple-button small" href="#about">More about me <PawPrint size={14} /></Link>
       </div>
-      <img className="photo about-main-photo" src={photos.jeroen} alt="Jeroen spending time with a dog in the woods" />
-      <div className="about-badges">
-        <Badge icon={Award} title="Experienced" text="& Trained" />
-        <Badge icon={Heart} title="Positive" text="Approach" />
-        <Badge icon={Shield} title="Fully" text="Insured" />
-        <Badge icon={BriefcaseMedical} title="First Aid" text="Certified" />
-      </div>
-      <div className="about-life">
-        <div><b>When I&apos;m not out on adventures...</b><p>You’ll probably find me exploring Wicklow, at the gym or with friends and family.</p></div>
-        <img src={photos.hero} alt="Walking dogs in the mountains" />
-        <img src={photos.golden} alt="Jeroen holding a treat for a dog" />
-        <img src={photos.beach} alt="Dog walking on the beach" />
-      </div>
+      <PawPrint className="about-paw" size={110} />
     </section>
   );
 }
 
-function Reviews() {
+function Portfolio() {
   return (
-    <section className="panel reviews-panel" id="reviews">
-      <SectionIntro eyebrow="What Clients Say" title="Trusted by Dogs & Their Humans" />
-      <div className="reviews-grid">
-        {reviews.map((review) => (
-          <blockquote className="review-card" key={review.name}>
-            <div className="stars">★★★★★</div>
-            <p>“{review.quote}”</p>
-            <b>— {review.name}</b>
-            <small>{review.place}</small>
-          </blockquote>
+    <section className="portfolio-home" id="portfolio">
+      <div className="section-row">
+        <div><p className="overline">Portfolio</p><h2>Moments. Connection. Memories.</h2></div>
+        <Link className="outline-button" href="#portfolio">View full portfolio <PawPrint size={14} /></Link>
+      </div>
+      <div className="portfolio-grid">
+        {portfolio.map(([title, image]) => (
+          <article className="portfolio-card" key={title}>
+            <img src={image} alt={`${title} dog photography`} />
+            <div><h3>{title}</h3><p>See gallery →</p></div>
+          </article>
         ))}
       </div>
-      <a className="button-primary google-button" href="https://google.com">Read More Reviews on Google <span>G</span></a>
-      <div className="review-wave">
-        <img src={photos.blackDog} alt="Happy black dog" />
-        <div>
-          <h3>Ready to give your dog the best part of their day?</h3>
-          <p>Book a free meet & greet to get started.</p>
-          <a className="button-light" href="#contact">Book a Meet & Greet <PawPrint size={17} /></a>
-        </div>
-        <p className="scribble wave-note">Can&apos;t wait to<br />meet you!</p>
+    </section>
+  );
+}
+
+function Experience() {
+  return (
+    <section className="experience-home" id="experience">
+      <p className="eyebrow center">The experience</p>
+      <h2>A simple process,<br /><span>beautiful</span> results.</h2>
+      <div className="steps">
+        {steps.map(({ icon: Icon, number, title, text }) => (
+          <article className="step" key={title}>
+            <span className="step-icon"><Icon size={30} /></span>
+            <small>{number}</small>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </article>
+        ))}
       </div>
     </section>
   );
 }
 
-function Gallery() {
+function Testimonial() {
   return (
-    <section className="panel section-panel" id="gallery">
-      <SectionIntro eyebrow="Gallery" title="Adventures & Happy Tails" />
-      <div className="gallery-grid">
-        {gallery.map((image, index) => <img src={image} alt={`Dog adventure ${index + 1}`} key={image} />)}
+    <section className="testimonial-home">
+      <div className="testimonial-copy">
+        <div className="quote-mark">“</div>
+        <blockquote>“Jeroen has a unique way of capturing the soul of your dog. The photos are absolutely breathtaking.”</blockquote>
+        <p>— Marleen</p>
+        <div className="dots"><span /><i /><i /><i /></div>
       </div>
-      <a className="button-primary instagram-button" href="https://instagram.com">Follow Our Adventures on Instagram <span>◎</span></a>
+      <img src={photos.testimonial} alt="Expressive dog portrait" />
     </section>
   );
 }
 
-function Contact() {
+function FinalCta() {
   return (
-    <section className="panel contact-panel" id="contact">
-      <div className="contact-copy">
-        <p className="eyebrow">Get In Touch</p>
-        <h2>Let’s Chat <span className="purple">♣</span></h2>
-        <p>Have a question or want to book a meet & greet? I’d love to hear from you!</p>
-        <div className="contact-list">
-          <ContactLine icon={Phone} title="Phone" text="087 123 4567" />
-          <ContactLine icon={Mail} title="Email" text="hello@jeroenandpaws.ie" />
-          <ContactLine icon={MapPin} title="Location" text="Bray, Co. Wicklow / Serving Bray, Wicklow & South Dublin" />
-          <p><span className="insta-glyph">◎</span><span><b>Instagram</b><small>@jeroen.and.paws</small></span></p>
-        </div>
+    <footer className="final-cta" id="contact">
+      <div className="footer-brand">
+        <Link href="#home" className="home-logo purple-logo">Jeroen<br />And Paws</Link>
+        <p>Natural dog photography<br />across Ireland & the Netherlands.</p>
+        <div className="socials"><span>◎</span><span>f</span><Mail size={22} /></div>
       </div>
-      <form className="contact-form">
-        <input placeholder="Your Name" />
-        <input placeholder="Email Address" />
-        <input placeholder="Phone Number" />
-        <textarea placeholder="Tell me about your dog..." rows={7} />
-        <button className="button-primary" type="button">Send Message <PawPrint size={17} /></button>
-      </form>
-      <p className="scribble contact-note">Woof you<br />soon! ♡</p>
-      <img className="contact-dog" src={photos.golden} alt="Happy dog waiting for a message" />
-    </section>
+      <div className="footer-center">
+        <h2>Ready to capture<br />your story <span>together?</span></h2>
+        <p>Let’s create something beautiful.</p>
+        <Link className="purple-button" href="mailto:hello@jeroenandpaws.ie">Book your session <PawPrint size={14} /></Link>
+      </div>
+      <img src={photos.cta} alt="Dog photography session in the mountains" />
+    </footer>
   );
-}
-
-function SectionIntro({ eyebrow, title }: { eyebrow: string; title: string }) {
-  return (
-    <div className="section-intro">
-      <p className="eyebrow">{eyebrow}</p>
-      <h2>{title} <span className="script">♡</span></h2>
-      <p>A few highlights from our daily adventures together.</p>
-    </div>
-  );
-}
-
-function Badge({ icon: Icon, title, text }: { icon: typeof Award; title: string; text: string }) {
-  return <div><Icon size={32} /><b>{title}</b><small>{text}</small></div>;
-}
-
-function ContactLine({ icon: Icon, title, text }: { icon: typeof Phone; title: string; text: string }) {
-  return <p><Icon size={24} /><span><b>{title}</b><small>{text}</small></span></p>;
 }
